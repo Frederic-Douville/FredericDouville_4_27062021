@@ -16,7 +16,7 @@ const closeCross = document.querySelectorAll(".close");
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// shut modal event
+// close modal event
 closeCross.forEach((btn) => btn.addEventListener("click",closeModal));
 
 // launch modal form
@@ -24,13 +24,12 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// shut modal form
+// close modal form
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-
-//form entries variable
+//DOM form elements 
 
 const btnSubmit = document.getElementById('button-submit');
 const firstName = document.getElementById('first');
@@ -47,6 +46,7 @@ const loc4 = document.getElementById('location4');
 const loc5 = document.getElementById('location5');
 const loc6 = document.getElementById('location6');
 
+//Regex used to verify entries validity
 const regexNumber = /^[0-9]+$/;
 const regexLetter = /^[a-zA-Z]+$/;
 const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
@@ -54,7 +54,7 @@ const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z
 function firstValid(){
   if (firstName.value !== null && firstName.value.length >= 2 && firstName.value.match(regexLetter)){
     return true;
-  }else{
+  }else{  
     return false;
   }
 }
@@ -107,26 +107,93 @@ function checkboxValid(){
   }
 }
 
+let functionMessage = [
+  {
+    result: firstValid(),
+    errorId: "first-error",
+    msgError: "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
+  },
+  {
+    result: lastValid(),
+    errorId: "last-error",
+    msgError: "Veuillez entrer 2 caractères ou plus pour le champ du nom."
+  },
+  {
+    result: emailValid(),
+    errorId: "email-error",
+    msgError: "Veuillez entrer un e-mail valide."
+  }, 
+  {
+    result: birthdateValid(),
+    errorId: "date-error",
+    msgError: "Veuillez entrer votre date de naissance."
+  },  
+  {
+    result: quantityValid(),
+    errorId: "quantity-error",
+    msgError: "Veuillez entrer le nombre de tournois auxquels vous avez participer."
+  },  
+  {
+    result: radioCheckedValid(),
+    errorId: "city-error",
+    msgError: "Veuillez choisir une ville."
+  },  
+  {
+    result: checkboxValid(),
+    errorId: "checkbox-error",
+    msgError:"Veuillez accepter les termes et conditions d'utlisation."
+  },   
+];
 
+//Onclick submition button event
+btnSubmit.addEventListener("click",update);
+btnSubmit.addEventListener("click",validOrNot);
 btnSubmit.addEventListener("click",validForm);
 
-function validForm(event){
-  if (firstValid()==true && lastValid()==true 
-  && emailValid()==true && birthdateValid()==true 
-  && quantityValid()==true && radioCheckedValid()==true 
-  && checkboxValid()==true){
-    alert("le formulaire est valide");    
-  }else{
-    event.preventDefault();
-    alert("le formulaire n'est pas valide");
-  }
+//function which is updating boolean results in functionMessage array 
+function update(event){
+  functionMessage[0].result = firstValid();
+  functionMessage[1].result = lastValid();
+  functionMessage[2].result = emailValid();
+  functionMessage[3].result = birthdateValid();
+  functionMessage[4].result = quantityValid();
+  functionMessage[5].result = radioCheckedValid();
+  functionMessage[6].result = checkboxValid();
 }
 
-console.log("fonction validForm fonctionne"); 
-  console.log('prénom: ',  firstValid());
-  console.log('nom: ', lastValid());
-  console.log('email: ', emailValid());
-  console.log('Date de naissance: ', birthdateValid()); 
-  console.log('Nombre de concours: ', quantityValid());
-  console.log('Ville :', radioCheckedValid());
-  console.log('checkbox: ', checkboxValid());
+//function which verify boolean results of functionMessage array
+function validOrNot(event){
+  console.log(functionMessage);
+  for(i = 0 ; i < functionMessage.length ; i++){    
+    if(functionMessage[i].result == false){
+      document.getElementById(functionMessage[i].errorId).innerHTML = functionMessage[i].msgError;
+    }else{
+      document.getElementById(functionMessage[i].errorId).innerHTML = "";
+    }
+  }
+};
+
+//function which verify the validity of the form
+function validForm(event){
+  if (firstValid() && lastValid() 
+  && emailValid() && birthdateValid()
+  && quantityValid() && radioCheckedValid()
+  && checkboxValid()){
+    alert("le formulaire est valide");    
+  }else{
+    event.preventDefault();    
+  }  
+}
+
+//inclure fenêtre de confirmation d'envoie du formulaire
+//Merci ! Votre réservation a été reçue.
+
+//Tenter un animations modale secouée lorsque le formulaire n'est pas valide
+
+//console.log('prénom: ',  firstValid());
+//console.log('nom: ', lastValid());
+//console.log('email: ', emailValid());
+//console.log('Date de naissance: ', birthdateValid()); 
+//console.log('Nombre de concours: ', quantityValid());
+//console.log('Ville :', radioCheckedValid());
+//console.log('checkbox: ', checkboxValid());

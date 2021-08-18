@@ -73,6 +73,7 @@
                   id="first"
                   name="first"                  
                 /><br>
+                <span class="msg-error" id="first-error"></span>
               </div>
               <div
                 class="formData">
@@ -83,6 +84,7 @@
                   id="last"
                   name="last"
                 /><br>
+                <span class="msg-error" id="last-error"></span>
               </div>
               <div
                 class="formData">
@@ -93,6 +95,7 @@
                   id="email"
                   name="email"
                 /><br>
+                <span class="msg-error" id="email-error"></span>
               </div>
               <div
                 class="formData">
@@ -103,13 +106,15 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
+                <span class="msg-error" id="date-error"></span>
               </div>
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <span class="msg-error" id="quantity-error"></span>
               </div>
-              <p class="text-label">Quelles villes ?</p>
+              <p class="text-label">Quelle ville ?</p>
               <div
                 class="formData">
                 <input
@@ -177,8 +182,9 @@
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>
                   Portland</label
-                >
+                >                
               </div>
+              <div><span class="msg-error" id="city-error"></span></div>
 
               <div
                 class="formData">
@@ -199,6 +205,7 @@
                   Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
+                <div class="msg-error" id="checkbox-error"></span>
               </div>
               <input
                 class="btn-submit"
@@ -211,6 +218,7 @@
           </div>
         </div>
       </div>
+      <div><span id="valid-form"></span></div>
     </main>
     <footer>
       
