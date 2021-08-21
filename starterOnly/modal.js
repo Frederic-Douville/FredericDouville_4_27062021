@@ -12,6 +12,8 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeCross = document.querySelectorAll(".close");
+const congratbg = document.querySelector(".congrat-container");
+const congratbtn = document.getElementById("congrat-btn");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -19,9 +21,11 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 closeCross.forEach((btn) => btn.addEventListener("click",closeModal));
 
+
+
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+  modalbg.style.display = "block";  
 }
 
 // close modal form
@@ -131,7 +135,7 @@ let functionMessage = [
   {
     result: quantityValid(),
     errorId: "quantity-error",
-    msgError: "Veuillez entrer le nombre de tournois auxquels vous avez participer."
+    msgError: "Veuillez entrer le nombre de tournois auxquels vous avez participé."
   },  
   {
     result: radioCheckedValid(),
@@ -179,16 +183,29 @@ function validForm(event){
   && emailValid() && birthdateValid()
   && quantityValid() && radioCheckedValid()
   && checkboxValid()){
-    alert("le formulaire est valide");    
+    return true;
   }else{
     event.preventDefault();    
   }  
 }
 
-//inclure fenêtre de confirmation d'envoie du formulaire
-//Merci ! Votre réservation a été reçue.
+//Launch congratulation message when form is valid
+function launchMsg(){
+    if (validForm() == true){
+    congratbg.style.display = "block";
+  }
+}
 
-//Tenter un animations modale secouée lorsque le formulaire n'est pas valide
+//Close event by clicking on "Ok" button
+congratbtn.addEventListener("click",closeMsg);
+
+//Close congratulation message
+function closeMsg(event) {
+  congratbg.style.display = "none";
+}
+
+
+//Tenter une animation modale secouée lorsque le formulaire n'est pas valide
 
 //console.log('prénom: ',  firstValid());
 //console.log('nom: ', lastValid());

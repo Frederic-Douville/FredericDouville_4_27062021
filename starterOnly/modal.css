@@ -530,3 +530,54 @@ footer {
 .msg-error{
   font-size:12px;
 }
+
+.congrat-container{
+  display: block;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
+.congrat-msg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-around;  
+  margin: auto;
+  margin-top:250px;
+  width: 70%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  background-color: #232323;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: normal;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);     
+}
+
+.congrat-msg p{
+  text-align: center; 
+}
+
+.congrat-btn {
+  background: #fe142f;
+  display: block;
+  margin: 0 auto 1rem auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 32px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+}
+
+.congrat-btn:hover {
+  background: #3876ac;
+}
