@@ -11,9 +11,10 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeCross = document.querySelectorAll(".close");
+const closeCross = document.querySelectorAll(".close-modal");
+const closeCrossCongrat = document.querySelectorAll(".close-congrat");
 const congratbg = document.querySelector(".congrat-container");
-const congratbtn = document.getElementById("congrat-btn");
+const congratbtn = document.querySelectorAll(".congrat-btn");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -153,6 +154,8 @@ let functionMessage = [
 btnSubmit.addEventListener("click",update);
 btnSubmit.addEventListener("click",validOrNot);
 btnSubmit.addEventListener("click",validForm);
+btnSubmit.addEventListener("click",launchMsg);
+
 
 //function which is updating boolean results in functionMessage array 
 function update(event){
@@ -177,40 +180,41 @@ function validOrNot(event){
   }
 };
 
+
 //function which verify the validity of the form
-function validForm(event){
+function validForm(event){  
   if (firstValid() && lastValid() 
   && emailValid() && birthdateValid()
   && quantityValid() && radioCheckedValid()
   && checkboxValid()){
-    return true;
+    return true;    
   }else{
-    event.preventDefault();    
+    event.preventDefault();
+    return false;    
   }  
 }
 
+//function called when form is submit 
+function validate(event){  
+  event.preventDefault();    
+}
+
 //Launch congratulation message when form is valid
-function launchMsg(){
-    if (validForm() == true){
-    congratbg.style.display = "block";
+function launchMsg(event){
+   if (validForm() == true){
+   congratbg.style.display = "block";    
   }
 }
 
-//Close event by clicking on "Ok" button
-congratbtn.addEventListener("click",closeMsg);
+//Close event by clicking on cross and "Fermer" button
+closeCrossCongrat.forEach((btn) => btn.addEventListener("click",closeMsg));
+congratbtn.forEach((btn) => btn.addEventListener("click",closeMsg));
 
-//Close congratulation message
-function closeMsg(event) {
+
+//function Close congratulation message and reset form by submitting it
+function closeMsg() {
   congratbg.style.display = "none";
+  modalbg.style.display="none";
+  form.submit();
 }
 
-
-//Tenter une animation modale secouée lorsque le formulaire n'est pas valide
-
-//console.log('prénom: ',  firstValid());
-//console.log('nom: ', lastValid());
-//console.log('email: ', emailValid());
-//console.log('Date de naissance: ', birthdateValid()); 
-//console.log('Nombre de concours: ', quantityValid());
-//console.log('Ville :', radioCheckedValid());
-//console.log('checkbox: ', checkboxValid());

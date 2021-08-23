@@ -58,14 +58,14 @@
 
       <div class="bground">
         <div class="content">
-          <span class="close"></span>
+          <span class="close-modal close"></span>
           <div class="modal-body">
             <form
               name="reserve"
               id="form"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit="return validate(event);"
             >
               <div
                 class="formData">
@@ -220,16 +220,23 @@
             </form>
           </div>
         </div>
-      </div>           
-    </main>
-    <div class="congrat-container">
-      <div class="congrat-msg">
-        <p>Félicitation ! Votre inscription a bien été prise en compte.</p>
-        <button class="congrat-btn" id="congrat-btn" >Ok</button>
-      </div>
-    </div> 
-    <footer>
+      </div>  
       
+      <div class="congrat-container">
+        <div class="modal-body ">
+          <div class="content congrat-content">
+            <span class="close-congrat close"></span>
+            <p class="congrat-msg">Merci ! Votre inscription a bien été prise en compte.</p>
+            <button class="congrat-btn" id="congrat-btn" >Fermer</button>
+          </div>
+        </div>
+      </div>        
+             
+    </main>
+
+    
+    
+    <footer>      
       <p class="copyrights">
         Copyright 2014 - 2020, GameOn Inc.        
       </p>
