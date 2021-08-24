@@ -1,3 +1,4 @@
+// Function which transform navigation bar into an interactive logo
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -16,26 +17,23 @@ const closeCrossCongrat = document.querySelectorAll(".close-congrat");
 const congratbg = document.querySelector(".congrat-container");
 const congratbtn = document.querySelectorAll(".congrat-btn");
 
-// launch modal event
+// Launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
-// close modal event
-closeCross.forEach((btn) => btn.addEventListener("click",closeModal));
-
-
-
-// launch modal form
+// Launch modal form
 function launchModal() {
   modalbg.style.display = "block";  
 }
 
-// close modal form
+// Close modal event
+closeCross.forEach((btn) => btn.addEventListener("click",closeModal));
+// Close modal form
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-//DOM form elements 
 
+
+// DOM form elements 
 const btnSubmit = document.getElementById('button-submit');
 const firstName = document.getElementById('first');
 const lastName = document.getElementById('last');
@@ -51,11 +49,12 @@ const loc4 = document.getElementById('location4');
 const loc5 = document.getElementById('location5');
 const loc6 = document.getElementById('location6');
 
-//Regex used to verify entries validity
+// Regex used to verify entries validity
 const regexNumber = /^[0-9]+$/;
 const regexLetter = /^[a-zA-Z]+$/;
 const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 
+// Functions that check input validity
 function firstValid(){
   if (firstName.value !== null && firstName.value.length >= 2 && firstName.value.match(regexLetter)){
     return true;
@@ -112,6 +111,7 @@ function checkboxValid(){
   }
 }
 
+// Object array that groups together error input messages 
 let functionMessage = [
   {
     result: firstValid(),
@@ -126,7 +126,7 @@ let functionMessage = [
   {
     result: emailValid(),
     errorId: "email-error",
-    msgError: "Veuillez entrer un e-mail valide."
+    msgError: "Veuillez entrer une adresse e-mail valide."
   }, 
   {
     result: birthdateValid(),
@@ -150,14 +150,18 @@ let functionMessage = [
   },   
 ];
 
-//Onclick submition button event
-btnSubmit.addEventListener("click",update);
-btnSubmit.addEventListener("click",validOrNot);
-btnSubmit.addEventListener("click",validForm);
-btnSubmit.addEventListener("click",launchMsg);
+// Onclick submition button event
+btnSubmit.addEventListener("click",validCycle)
+
+// Function that calls the checking form function
+function validCycle(event){
+  update(event);
+  validOrNot(event);
+  validForm(event);
+}
 
 
-//function which is updating boolean results in functionMessage array 
+// Function which is updating boolean results in functionMessage array 
 function update(event){
   functionMessage[0].result = firstValid();
   functionMessage[1].result = lastValid();
@@ -168,7 +172,7 @@ function update(event){
   functionMessage[6].result = checkboxValid();
 }
 
-//function which verify boolean results of functionMessage array
+// Function that check boolean results of functionMessage array
 function validOrNot(event){
   console.log(functionMessage);
   for(i = 0 ; i < functionMessage.length ; i++){    
@@ -181,12 +185,13 @@ function validOrNot(event){
 };
 
 
-//function which verify the validity of the form
+// Function that check the validity of the form
 function validForm(event){  
   if (firstValid() && lastValid() 
   && emailValid() && birthdateValid()
   && quantityValid() && radioCheckedValid()
   && checkboxValid()){
+    congratbg.style.display = "block";
     return true;    
   }else{
     event.preventDefault();
@@ -194,27 +199,19 @@ function validForm(event){
   }  
 }
 
-//function called when form is submit 
+// Function called when form is submit 
 function validate(event){  
   event.preventDefault();    
 }
 
-//Launch congratulation message when form is valid
-function launchMsg(event){
-   if (validForm() == true){
-   congratbg.style.display = "block";    
-  }
-}
-
-//Close event by clicking on cross and "Fermer" button
+// Close event by clicking on cross and "Fermer" button
 closeCrossCongrat.forEach((btn) => btn.addEventListener("click",closeMsg));
 congratbtn.forEach((btn) => btn.addEventListener("click",closeMsg));
 
 
-//function Close congratulation message and reset form by submitting it
+// Function Close congratulation message and reset form by submitting it
 function closeMsg() {
   congratbg.style.display = "none";
-  modalbg.style.display="none";
   form.submit();
 }
 
