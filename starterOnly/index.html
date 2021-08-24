@@ -14,7 +14,7 @@
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-        <img alt="logo" src="Logo.png" width="auto" height="auto" />
+        <img alt="logo" src="Logo.png" class="image-header"/>
       </div>
     <div class="main-navbar">
       
@@ -28,7 +28,6 @@
       </a>
     </div>
     </div>
-  </div>
   
     <main>
       <div class="hero-section">
@@ -189,15 +188,14 @@
               </div>
               <div><span class="msg-error" id="city-error"></span></div>
 
-              <div
-                class="formData">
+              <div class="formData">
                 <input
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
                   checked
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -208,12 +206,12 @@
                   Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
-                <div class="msg-error" id="checkbox-error"></span>
+                <div> <span class="msg-error" id="checkbox-error"></span>
+                </div>
               </div>
               <input
-                class="btn-submit"
+                class="btn-submit button"
                 type="submit"
-                class="button"
                 id="button-submit"
                 value="C'est parti"                
               />
