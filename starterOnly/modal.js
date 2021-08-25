@@ -51,7 +51,7 @@ const loc6 = document.getElementById('location6');
 
 // Regex used to verify entries validity
 const regexNumber = /^[0-9]+$/;
-const regexLetter = /^[a-zA-Z]+$/;
+const regexLetter = /^[a-zA-Zéèêàùûôç]+$/;
 const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 
 // Functions that check input validity
@@ -151,7 +151,7 @@ let functionMessage = [
 ];
 
 // Onclick submition button event
-btnSubmit.addEventListener("click",validCycle)
+btnSubmit.addEventListener("click",validCycle);
 
 // Function that calls the checking form function
 function validCycle(event){
@@ -161,7 +161,7 @@ function validCycle(event){
 }
 
 
-// Function which is updating boolean results in functionMessage array 
+// Function that update boolean results in functionMessage array 
 function update(event){
   functionMessage[0].result = firstValid();
   functionMessage[1].result = lastValid();
@@ -174,7 +174,6 @@ function update(event){
 
 // Function that check boolean results of functionMessage array
 function validOrNot(event){
-  console.log(functionMessage);
   for(i = 0 ; i < functionMessage.length ; i++){    
     if(functionMessage[i].result == false){
       document.getElementById(functionMessage[i].errorId).innerHTML = functionMessage[i].msgError;
@@ -182,7 +181,7 @@ function validOrNot(event){
       document.getElementById(functionMessage[i].errorId).innerHTML = "";
     }
   }
-};
+}
 
 
 // Function that check the validity of the form
