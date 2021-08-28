@@ -191,6 +191,7 @@ function validForm(event){
   && quantityValid() && radioCheckedValid()
   && checkboxValid()){
     congratbg.style.display = "block";
+    modalbg.style.display = "none";
     return true;    
   }else{
     event.preventDefault();
